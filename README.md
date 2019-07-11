@@ -1,4 +1,4 @@
-### Cloned from git@bitbucket.org:atlassian/docker-node-jdk-chrome-firefox.git
+### Cloned from [git@bitbucket.org:atlassian/docker-node-jdk-chrome-firefox.git](https://bitbucket.org/atlassian/docker-node-jdk-chrome-firefox)
 
 This is a clone of the atlassian docker-node-jdk-chrome-firefox repo found on bitbucket. This
 version of the respository upgrades the node version to node 12 and jessie image to stretch.

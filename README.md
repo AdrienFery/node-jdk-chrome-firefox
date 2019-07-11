@@ -1,3 +1,8 @@
+### Cloned from git@bitbucket.org:atlassian/docker-node-jdk-chrome-firefox.git
+
+This is a clone of the atlassian docker-node-jdk-chrome-firefox repo found on bitbucket. This
+version of the respository upgrades the node version to node 12 and jessie image to stretch.
+
 # Dockerfile for AUI
 
 This Dockerfile contains:
@@ -5,7 +10,7 @@ This Dockerfile contains:
 * SCM tools
 * Java 8
 * Maven 3.3.9
-* Node 8.x
+* Node 12
 * npm and yarn latest
 * Google Chrome latest
 * Firefox ESR latest

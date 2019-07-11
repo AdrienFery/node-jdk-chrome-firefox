@@ -1,8 +1,7 @@
-FROM buildpack-deps:jessie-scm
+FROM buildpack-deps:stretch
 
 # Install Java 8
 
-RUN echo 'deb http://httpredir.debian.org/debian jessie-backports main' >> /etc/apt/sources.list.d/jessie-backports.list
 
 RUN set -x \
     && apt-get update \
@@ -15,7 +14,6 @@ RUN locale-gen $LANG
 RUN set -x \
     && apt-get update \
     && apt-get install -y \
-        -t jessie-backports \
         ca-certificates-java \
         openjdk-8-jre-headless \
         openjdk-8-jre \
@@ -39,7 +37,7 @@ VOLUME /root/.m2
 
 # Install node 8
 RUN set -x \
-    && curl -sL https://deb.nodesource.com/setup_8.x | bash - \
+    && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
     && apt-get update \
     && apt-get install -y \
         nodejs \
@@ -79,20 +77,20 @@ ENV CHROME_BIN /usr/bin/google-chrome
 
 # Install firefox
 
+RUN echo "deb http://ftp.hr.debian.org/debian sid main contrib non-free" > /etc/apt/sources.list.d/firefox.list
+
 RUN set -x \
     && apt-get update \
     && apt-get install -y \
         pkg-mozilla-archive-keyring
 
-RUN echo 'deb http://security.debian.org/ jessie/updates main' >> /etc/apt/sources.list.d/jessie-updates.list
 
 RUN set -x \
     && apt-get update \
     && apt-get install -y \
         xvfb \
-    && apt-get install -y -t \
-        jessie-backports \
-        firefox-esr
+    && apt-get install -y \
+        firefox
 
 ADD scripts/xvfb-firefox /usr/bin/xvfb-firefox
 RUN ln -sf /usr/bin/xvfb-firefox /usr/bin/firefox
@@ -104,7 +102,8 @@ RUN set -x && \
     apt-get update && \
     apt-get install -y \
         bzip2 \
-        zip
+        zip \
+    && rm -rf /var/lib/apt/lists/*
 
 # RUN node -v
 # RUN npm -v
